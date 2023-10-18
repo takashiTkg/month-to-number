@@ -10,13 +10,17 @@ const manifest = defineManifest({
   action: {
     default_popup: 'index.html',
   },
+  background: {
+    service_worker: 'src/background/event.ts',
+    type: 'module',
+  },
   content_scripts: [
     {
       matches: ['https://*/*', 'http://localhost/*'],
       js: ['src/content/script.ts'],
     },
   ],
-  permissions: ['tabs'],
+  permissions: ['tabs', 'contextMenus'],
 })
 
 export default defineConfig({
